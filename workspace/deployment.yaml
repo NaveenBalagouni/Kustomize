@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kustomize-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: kustomize
+  template:
+    metadata:
+      labels:
+        app: kustomize
+    spec:
+      containers:
+      - name: kustomize
+        image: quay.io/opsmxpublic/kustomize:v2
+        ports:
+        - containerPort: 80
