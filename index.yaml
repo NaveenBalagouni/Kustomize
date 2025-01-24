@@ -6,7 +6,7 @@ entries:
     created: "2025-01-18T15:20:46.3193595+05:30"
     description: A Helm chart for Kubernetes
     digest: d61b523d97743c636eca6039050efc055870feb25fc22e1b7f3b98e783b118d7
-    name: my-chart
+    name: issuegen
     type: application
     urls:
     - https://NaveenBalagouni.github.io/Kustomize/my-chart-0.1.0.tgz
