@@ -1,0 +1,18 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: my-app
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: 'https://github.com/NaveenBalagouni/Kustomize.git'
+    targetRevision: HEAD  # Can be a branch name or a specific commit hash
+    path: 'workspace/my-chart/templates'  # Path in the repo where your YAML files are located
+  destination:
+    server: 'https://kubernetes.default.svc'  # Default server
+    namespace: default  # The namespace where the resources will be deployed
+  syncPolicy:
+    automated: 
+      prune: true        # Automatically prune resources that are no longer defined in the Git repository
+      selfHeal: true     # Automatically correct any differences detected in the sync process
