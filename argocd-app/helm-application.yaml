@@ -1,0 +1,23 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: my-helm-app
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: 'https://github.com/NaveenBalagouni/Kustomize.git'  # Git repo URL where the Helm chart is stored
+    targetRevision: HEAD  # Use the default branch (main)
+    path: 'workspace/my-chart'  # Path to the Helm chart inside the repo
+    helm:
+      valueFiles:
+        - values.yaml  # Use this values file for custom values
+  destination:
+    server: 'https://kubernetes.default.svc'  # Default cluster URL
+    namespace: naveen-helm  # The namespace where the Helm chart will be deployed
+  syncPolicy:
+    automated:
+      prune: true  # Automatically prune resources that are not part of the chart
+      selfHeal: true  # Automatically heal if there’s drift in the cluster
+    syncOptions:
+      - CreateNamespace=true  # Option to automatically create the namespace if it doesn't exist
